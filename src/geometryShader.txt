@@ -1,0 +1,27 @@
+#version 330 core
+layout (points) in;
+layout (triangle_strip, max_vertices = 3) out;
+
+in vec2 vel[];
+
+uniform mat4 projection;
+uniform float size;
+
+void main()
+{
+	vec2 pos = vec2(gl_in[0].gl_Position);
+	float size2 = size / 2.0f;
+
+	vec2 normVel = normalize(vel[0]);
+	gl_Position = projection * vec4(pos.x + size * normVel.x, pos.y + size * normVel.y, 0.0f, 1.0f);
+    EmitVertex();
+
+	vec2 perp = vec2(-normVel.y, normVel.x);
+	gl_Position = projection * vec4(pos.x - size2 * normVel.x - size2 * perp.x, pos.y - size2 * normVel.y - size2 * perp.y, 0.0f, 1.0f);
+    EmitVertex();
+
+	gl_Position = projection * vec4(pos.x - size2 * normVel.x + size2 * perp.x, pos.y - size2 * normVel.y + size2 * perp.y, 0.0f, 1.0f);
+	EmitVertex();
+
+	EndPrimitive();
+}
