@@ -2,6 +2,6 @@
 
 2D shoal of fish simulation using CUDA. The user can adjust three main parameters: separation, cohesion, and alignment.
 
-![](images/image1)
+![](https://github.com/Luuxo77/Boids/blob/main/images/image1.png)
 
-![](images/image2)
+![](https://github.com/Luuxo77/Boids/blob/main/images/image2.png)
